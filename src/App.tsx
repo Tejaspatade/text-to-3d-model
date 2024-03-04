@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar page={page} setPage={setPage} />
       {
         page === "home" && <Home setPage={setPage} />
       }

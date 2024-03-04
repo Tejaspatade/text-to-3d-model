@@ -12,7 +12,7 @@ const images = [
 
 const Results = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {images.map((imageUrl, index) => (
         <div key={index} className="relative w-full h-0" style={{ paddingBottom: "100%" }}>
           <img

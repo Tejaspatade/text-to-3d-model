@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaArrowUp } from "react-icons/fa6";
+import { FaArrowDown } from "react-icons/fa6";
 
 import Results from "./Results";
 
@@ -11,13 +11,25 @@ const Prompt = () => {
   };
 
   const handleSubmit = () => {
-    console.log(prompt);
+    // Forming the prompt data
+    const promptData = {
+      prompt: prompt,
+      time: new Date().toISOString()
+    }
+    console.log(promptData);
+
+    // Clearing Prompt after submission
+    setPrompt("");
+
+    // Prompt goes to backend
+  
+
   };
 
   return (
     <section className="bg-[#fafaf7] mt-4 mx-4 p-16">
       <h1 className="text-xl font-semibold mb-4">Explain how you would like the House Plan to look</h1>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mb-6">
         <input
           type="text"
           value={prompt}
@@ -29,7 +41,7 @@ const Prompt = () => {
           onClick={handleSubmit}
           className="bg-[#fc6650] hover:bg-[#fc553d] text-white h-9 font-semibold py-2 px-4 rounded mb-4 sm:mr-4"
           >
-          <FaArrowUp />
+          <FaArrowDown />
         </button>
       </div>
 
