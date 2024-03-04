@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 
+import Results from "./Results";
 
 const Prompt = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -15,7 +16,7 @@ const Prompt = () => {
 
   return (
     <section className="bg-[#fafaf7] mt-4 mx-4 p-16">
-      <h1 className="text-xl font-semibold mb-4">Explain how you would like the house to look</h1>
+      <h1 className="text-xl font-semibold mb-4">Explain how you would like the House Plan to look</h1>
       <div className="flex gap-2">
         <input
           type="text"
@@ -31,6 +32,8 @@ const Prompt = () => {
           <FaArrowUp />
         </button>
       </div>
+
+      <Results />
     </section>
   )
 }
