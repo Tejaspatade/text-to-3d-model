@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import { useState } from "react";
 import { FaArrowDown } from "react-icons/fa6";
 
@@ -6,6 +6,7 @@ import Results from "./Results";
 
 const Prompt = () => {
   const [prompt, setPrompt] = useState<string>("");
+  const [img, setImg] = useState<string>("");
   const [isValidPrompt, setIsValidPrompt] = useState<boolean>(true);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,6 +14,21 @@ const Prompt = () => {
 
     // Reset validation when user starts typing
     setIsValidPrompt(true);
+  };
+
+  const makeRequest = async (promptData: {prompt: string, time: string}) => {
+    const response = await fetch('https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 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',
+      },
+      body: JSON.stringify(promptData.prompt),
+    })
+    const data = await response.blob();
+
+    const url = URL.createObjectURL(data);
+    setImg(url);
   };
 
   const handleSubmit = () => {
@@ -27,11 +43,8 @@ const Prompt = () => {
       }
       console.log(promptData);
 
-      // Clearing Prompt after submission
-      setPrompt("");
-
-      // Prompt goes to backend
-      // axios.post("http://localhost:5000/prompt", promptData)
+      // Prompt goes to API
+      makeRequest(promptData);
     }
   };
 
@@ -55,7 +68,7 @@ const Prompt = () => {
         </button>
       </div>
 
-      <Results />
+      <img src={img} alt="placeholder" className="" />
     </section>
   )
 }

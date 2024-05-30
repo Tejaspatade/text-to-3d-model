@@ -1,5 +1,3 @@
-import React from "react";
-
 const images = [
   "https://via.placeholder.com/300x200",
   "https://via.placeholder.com/200x400",
