@@ -5,6 +5,7 @@ const Prompt = () => {
   const [prompt, setPrompt] = useState<string>("");
   const [img, setImg] = useState<string>("");
   const [isValidPrompt, setIsValidPrompt] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
@@ -14,6 +15,7 @@ const Prompt = () => {
   };
 
   const makeRequest = async (promptData: {prompt: string, time: string}) => {
+    setIsLoading(true);
     const response = await fetch('https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image', {
       method: 'POST',
       headers: {
@@ -26,6 +28,7 @@ const Prompt = () => {
 
     const url = URL.createObjectURL(data);
     setImg(url);
+    setIsLoading(false);
   };
 
   const handleSubmit = () => {
@@ -65,7 +68,15 @@ const Prompt = () => {
         </button>
       </div>
 
-      <img src={img} alt="placeholder" className="" />
+      {isLoading ? (
+        <div className="flex justify-center items-center h-64 font-semibold text-2xl text-gray-400 select-none">Loading...</div>
+      ) : img ? (
+        <div className="flex justify-center items-center">
+          <img src={img} alt="Generated image" />
+        </div>
+      ) : (
+        <div className="flex justify-center items-center h-64 font-semibold text-2xl text-gray-400 select-none">Your generated image shows here</div>
+      )}
     </section>
   )
 }
