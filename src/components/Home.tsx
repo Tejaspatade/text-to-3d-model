@@ -20,9 +20,9 @@ const Home = ({ setPage }: HomeProps) => {
           <button className="bg-[#fc6650] hover:bg-[#fc553d] text-white font-semibold py-2 px-4 rounded mb-4 sm:mr-4" onClick={handleGetStarted}>
             Get Started
           </button>
-          <button className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded mb-4 sm:mr-4">
+          {/* <button className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded mb-4 sm:mr-4">
             Sign Up
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
